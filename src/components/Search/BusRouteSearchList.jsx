@@ -8,7 +8,7 @@ export default function BusRouteSearchList({ route_list }) {
         <>
             <div className="flex justify-between mx-4">
                 <span></span>
-                <select onChange={(e) => setCity(e.target.value)}>
+                <select className="bg-white" onChange={(e) => setCity(e.target.value)}>
                     <option value="">全縣市</option>
                     {Object.entries(route_city_data).map(city => (
                         <option key={city[0]} value={city[0]}>{city[1]}</option>
