@@ -32,7 +32,7 @@ export default function StoreBusStation({ setBusStation }) {
 
 
     return (loading &&
-        <div className="bg-white opacity-90 z-50 w-full h-full fixed flex items-center justify-center">
+        <div className="bg-white opacity-90 z-50 w-full h-full fixed flex flex-col items-center justify-center">
             <p className="text-center mb-2 tracking-widest">資料更新中…</p>
             <p className="text-center tracking-widest">第一次更新需約15秒的時間</p>
         </div>
