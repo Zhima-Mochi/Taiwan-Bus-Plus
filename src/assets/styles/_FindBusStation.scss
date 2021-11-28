@@ -1,0 +1,25 @@
+.input-window {
+    position: relative;
+    height: 60px;
+    width: 90%;
+    max-width: 700px;
+
+    & .input {
+        width: 100%;
+        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 6px;
+        color: black;
+        background: #EEEEEE;
+        border-radius: 10px;
+        -webkit-appearance: textfield;
+        padding-left: 40px;
+    }
+
+    & .lookup {
+        position: absolute;
+        left: 11px;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

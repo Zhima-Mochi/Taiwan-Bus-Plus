@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$main_head: #61A68A;
+$hover_head: #3a5548;
+$black: #333333;
+$gray: #666667;
+$btn-red: #B96C58;
+$bg-white: #fffffff6;
+$purple : #9B51E0;
+
+$primary-color: #283C43;
+$second-color: #D08181;
+$color1:#3591C5;
+$color2:#7FC0C5;
+$color3:#5E9BAE;
+$color4:#52797C;
+$color5:#283C43;
+
+
+@import url(//fonts.googleapis.com/css?family=Noto+Sans);
+@import url(//fonts.googleapis.com/css?family=Roboto);
+
+
+$font-style:Noto Sans TC;
+
+$verylargedevice: 1200px;
+$largedevice: 992px;
+$mediumdevice: 768px;
+$smalldevice: 576px;
+
+@mixin xl-width() {
+    @media (min-width: $verylargedevice) {
+        @content;
+    }
+}
+
+@mixin lg-width() {
+    @media (min-width: $largedevice) {
+        @content;
+    }
+}
+
+@mixin md-width() {
+    @media (min-width: $mediumdevice) {
+        @content;
+    }
+}
+
+@mixin sm-width() {
+    @media (min-width: $smalldevice) {
+        @content;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC', Overpass, -apple-system, Arial, BlinkMacSystemFont, 'Microsoft JhengHei', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+}
+
+.br-width {
+    max-width: 800;
+}
+
+body {
+    // iOS < 11.2
+    padding-left: constant(safe-area-inset-left);
+    padding-top: constant(safe-area-inset-top);
+    padding-right: constant(safe-area-inset-right);
+    padding-bottom: constant(safe-area-inset-bottom);
+    // iOS >= 11.2
+    padding-left: env(safe-area-inset-left);
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+html {
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+        width: 0.4em;
+    }
+    
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb {
+        overflow: visible;
+        border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+// linear-gradient(to top, #6B799E 10%, #A6C2CE 85%)
+.App {
+    background-color: #F5F6F6;
+}
+
+.view-border {
+    
+    
+    @include md-width {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+    @include xl-width {
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+}
+
+// Necessary leaflet css
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+@import "BusEstimatedTime";
+@import "BusEstimatedTimeList";
+@import "BusRouteSearchList";
+@import "BusStationSearchList";
+@import "FindBusRoute";
+@import "FindBusStation";
+@import "Header";
+@import "Home";
+@import "NearByBusStation";
+@import "NearByBusStationMap";
+@import 'banner';

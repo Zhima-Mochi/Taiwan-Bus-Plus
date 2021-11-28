@@ -1,0 +1,14 @@
+.bus-estimated-time-routename {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 32px;
+
+    color: #000000;
+
+    @include lg-width {
+        font-size: 35px;
+        line-height: 41px;
+    }
+}

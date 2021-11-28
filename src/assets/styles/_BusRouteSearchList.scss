@@ -1,0 +1,43 @@
+
+
+.route-search-item {
+    background-color: $bg-white;
+    padding: 8px 12px;
+    margin:0 20px;
+    border-bottom: 1px solid #E7E7E7;
+    @apply flex justify-between items-center mx-auto;
+
+    @inlcude lg-width {
+        padding: 8px 12px;    
+    }
+}
+
+.route-name {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+
+
+    @inlcude lg-width {}
+}
+
+.route-depart-dest {
+    font-family: $font-style;
+    font-style: normal;
+    font-weight: normal;
+    color: #888888;
+    font-size: 20px;
+    line-height: 23px;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.route-city{
+    font-family: $font-style;
+    font-style: normal;
+    font-weight: normal;
+    color: #888888;
+    font-size: 12px;
+}

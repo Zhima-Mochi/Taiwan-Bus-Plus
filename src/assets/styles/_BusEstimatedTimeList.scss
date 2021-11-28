@@ -1,0 +1,78 @@
+.arrival-time-block {
+    width: 100%;
+    @apply mx-auto;
+}
+
+.arrival-time-direction-toggle {
+    height: 50px;
+    color: black;
+    text-align: center;
+    background-color: #e6e6e6;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    @apply tracking-widest ;
+
+    @include lg-width {
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    &.on {
+        color: white;
+        background-color: #3a5548;
+    }
+}
+
+.arrival-time-item {
+    height: 52px;
+    padding: 13px 4px;
+    border-bottom: 1px solid #E7E7E7;
+
+}
+
+.arrival-time-stop-name {
+    font-family: $font-style;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    @apply tracking-widest;
+
+    @include lg-width {
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    &.comming {
+        background: #000000;
+    }
+
+    &.no-depart {
+        background: #888888;
+    }
+
+}
+
+.arrival-time-estimated-time {
+    width: 77px;
+    height: 26px;
+    background: #355F8B;
+    border-radius: 10px;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    &.comming {
+        background: #D08181;
+    }
+
+    &.gray {
+        background: #A9A9A9;
+    }
+}

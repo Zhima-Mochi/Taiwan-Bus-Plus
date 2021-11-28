@@ -1,0 +1,41 @@
+
+.station-search-item {
+    background-color: $bg-white;
+    padding: 8px 12px;
+    border-bottom: 1px solid #E7E7E7;
+    @inlcude lg-width {
+        padding: 8px 12px;    
+    }
+}
+
+.station-name {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    white-space: nowrap;
+
+    @inlcude lg-width {}
+}
+
+.station-address {
+    font-family: $font-style;
+    font-style: normal;
+    font-weight: normal;
+    color: #888888;
+    font-size: 20px;
+    line-height: 23px;
+    font-size: 14px;
+    line-height: 19px;
+
+    white-space: nowrap;
+}
+
+.station-city{
+    font-family: $font-style;
+    font-style: normal;
+    font-weight: normal;
+    color: #888888;
+    font-size: 12px;
+}

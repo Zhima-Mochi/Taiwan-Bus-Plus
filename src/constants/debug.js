@@ -1,0 +1,1 @@
+export const DEBUG = process.env.REACT_APP_DEBUG === 1;
