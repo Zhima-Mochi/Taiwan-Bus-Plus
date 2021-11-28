@@ -140,7 +140,7 @@ export default function BusEstimatedTimeList({ estimateData, RouteData }) {
 
     return (
         <div className="arrival-time-block h-full flex flex-col">
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
                 <span></span>
                 <div className="flex justify-center items-center tracking-widest mr-1 cursor-pointer py-1" onClick={() => setHideMap(!hideMap)}>
                     <img src={map} className="h-4 mr-2"></img>
@@ -149,7 +149,7 @@ export default function BusEstimatedTimeList({ estimateData, RouteData }) {
             </div>
             <div className={`w-full transition-all ` + (hideMap ? 'h-0' : 'h-60 lg:h-96')}>
                 {pinStop && stopsOfRoute && <BusRouteMap stopsOfRoute={stopsOfRoute} direction={direction} data={estimateData} />}
-            </div>
+            </div> */}
             <div className="flex items-center">
                 {0 in estimateData && estimateData[0].length > 0 &&
                     <div className={`flex-1 flex items-center justify-center arrival-time-direction-toggle ` + (direction === 0 ? 'on' : null)} onClick={() => setDirection(0)}>

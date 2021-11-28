@@ -16,10 +16,6 @@ function App() {
   const [busStation, setBusStation] = useState([]);
   const [busRoute, setBusRoute] = useState([]);
   const [userLocation, setUserLocation] = useState(useContext(UserLocationContext));
-  // console.log(busStation);
-  // console.log('user location', userLocation);
-  // console.log('near by bus station', getNearByBusStation(busStation, userLocation));
-  // console.log('get bus estimated arrival', getBusRouteEstimatedArrival('Taipei', 'TPE10181'));
   return (
     <div className="App" >
 
