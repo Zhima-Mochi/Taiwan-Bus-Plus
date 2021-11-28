@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { city_data } from '../../api/TDX/city_data';
 import { BusRouteContext } from '../../App';
-export default function BusStationSearchList({ station_list, busStation, inputContent }) {
+export default function BusStationSearchList({ station_list, busStation, inputContent = "" }) {
     const busRoute = useContext(BusRouteContext);
     const [city, setCity] = useState("");
     const [prepare, setPrepare] = useState({});
@@ -18,7 +18,7 @@ export default function BusStationSearchList({ station_list, busStation, inputCo
         });
         setPrepare(p);
     }, [busStation]);
-    if (inputContent && inputContent.length === 0 && city !== "") {
+    if (inputContent.length === 0 && city !== "") {
         if (prepare[city]) {
             station_list = prepare[city];
         }
