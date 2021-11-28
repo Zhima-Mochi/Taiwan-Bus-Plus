@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "./static/css/main.6ae76c00.chunk.css",
+    "main.js": "./static/js/main.3b3d382c.chunk.js",
+    "main.js.map": "./static/js/main.3b3d382c.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.d7a67e3c.js",
+    "runtime-main.js.map": "./static/js/runtime-main.d7a67e3c.js.map",
+    "static/css/2.b703dad2.chunk.css": "./static/css/2.b703dad2.chunk.css",
+    "static/js/2.7b971001.chunk.js": "./static/js/2.7b971001.chunk.js",
+    "static/js/2.7b971001.chunk.js.map": "./static/js/2.7b971001.chunk.js.map",
+    "static/js/3.b8695b63.chunk.js": "./static/js/3.b8695b63.chunk.js",
+    "static/js/3.b8695b63.chunk.js.map": "./static/js/3.b8695b63.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.b703dad2.chunk.css.map": "./static/css/2.b703dad2.chunk.css.map",
+    "static/css/main.6ae76c00.chunk.css.map": "./static/css/main.6ae76c00.chunk.css.map",
+    "static/js/2.7b971001.chunk.js.LICENSE.txt": "./static/js/2.7b971001.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "./static/media/bg.24910200.jpg",
+    "static/media/bus_c1.01261033.svg": "./static/media/bus_c1.01261033.svg",
+    "static/media/bus_c2.3a493e43.svg": "./static/media/bus_c2.3a493e43.svg",
+    "static/media/bus_c3.8737ceaf.svg": "./static/media/bus_c3.8737ceaf.svg",
+    "static/media/bus_c4.94f6594e.svg": "./static/media/bus_c4.94f6594e.svg",
+    "static/media/bus_c5.475883a6.svg": "./static/media/bus_c5.475883a6.svg",
+    "static/media/directions_bus_filled_24dp.1adceefa.svg": "./static/media/directions_bus_filled_24dp.1adceefa.svg",
+    "static/media/favorite_24dp.53c45348.svg": "./static/media/favorite_24dp.53c45348.svg",
+    "static/media/favorite_border_24dp.e0f3e7ea.svg": "./static/media/favorite_border_24dp.e0f3e7ea.svg",
+    "static/media/logo.606790e7.svg": "./static/media/logo.606790e7.svg",
+    "static/media/map.b03c20b2.svg": "./static/media/map.b03c20b2.svg",
+    "static/media/pin.9bb06f23.svg": "./static/media/pin.9bb06f23.svg",
+    "static/media/radio_button_checked_black_24dp.9a33b9ed.svg": "./static/media/radio_button_checked_black_24dp.9a33b9ed.svg",
+    "static/media/search_black_24dp.b56cb96d.svg": "./static/media/search_black_24dp.b56cb96d.svg",
+    "static/media/west_24dp.77f97c6f.svg": "./static/media/west_24dp.77f97c6f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d7a67e3c.js",
+    "static/css/2.b703dad2.chunk.css",
+    "static/js/2.7b971001.chunk.js",
+    "static/css/main.6ae76c00.chunk.css",
+    "static/js/main.3b3d382c.chunk.js"
+  ]
+}
