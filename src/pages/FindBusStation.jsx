@@ -57,7 +57,6 @@ export default function FindBusStation() {
                 })
             );
         } else if (nearByBusStation.length > 0) {
-            console.log(nearByBusStation)
             setStationList(nearByBusStation);
         } else {
             const pick = Math.floor(busStation.length / 2);
@@ -76,7 +75,7 @@ export default function FindBusStation() {
                     <span className="ml-2">返回首頁</span>
                 </div>
                 <FindBusStationInput inputHandle={getInputContent} />
-                <BusStationSearchList station_list={stationList} />
+                <BusStationSearchList station_list={stationList} busStation={busStation} inputContent={inputContent} />
             </div>
         </section>
     );

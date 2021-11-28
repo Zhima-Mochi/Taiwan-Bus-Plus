@@ -14,7 +14,7 @@ function FindBusRouteInput({ inputHandle }) {
         <div className="flex justify-center items-center">
             <div className="input-window flex justify-center items-center ">
                 <img src={search_black_24dp} className="lookup" alt="尋找路線 serach icon" />
-                <input className="input" placeholder="請輸入公車路線或號碼" autoComplete="off" onChange={e => inputHandle(e.target.value)}></input>
+                <input className="input" inputMode="numeric" placeholder="請輸入公車路線或號碼" autoComplete="off" onChange={e => inputHandle(e.target.value)}></input>
             </div>
         </div>
     );
@@ -48,7 +48,7 @@ export default function FindBusRoute() {
                 })
             );
         } else {
-            setRouteList(busRoute.slice(0, 10));
+            setRouteList(busRoute.slice(0,50));
         }
     }, [inputContent, busRouteTrie, busRoute]);
 
@@ -60,7 +60,7 @@ export default function FindBusRoute() {
                     <span className="ml-2">返回首頁</span>
                 </div>
                 <FindBusRouteInput inputHandle={getInputContent} />
-                <BusRouteSearchList route_list={routeList} />
+                <BusRouteSearchList route_list={routeList} busRoute={busRoute} inputContent={inputContent} />
             </div>
         </section>
     );

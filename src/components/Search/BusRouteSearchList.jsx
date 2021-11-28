@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { route_city_data } from '../../api/TDX/city_data';
 import LikedBusRoute from '../LocalStorage/LikedBusRoute';
-export default function BusRouteSearchList({ route_list }) {
+export default function BusRouteSearchList({ route_list, busRoute, inputContent }) {
     const [city, setCity] = useState("");
+    if (inputContent && inputContent.length === 0 && city !== "") {
+        route_list = busRoute;
+    }
     return (
         <>
             <div className="flex justify-between mx-4">
