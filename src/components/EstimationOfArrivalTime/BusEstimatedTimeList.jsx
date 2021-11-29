@@ -64,7 +64,7 @@ function EstimatedTimeItem({ data, pinStop, direction, setMapStop }) {
         }
     }, [pinStop, direction]);
     return (
-        <div id={data.StopUID} onClick={() => { setMapStop(data.StopUID) }} className={"flex items-center arrival-time-item " + (coming_status === 1 && "bg-gray-100")}>
+        <div id={data.StopUID} onClick={() => { setMapStop(data.StopUID) }} className={"flex items-center arrival-time-item " + (coming_status === 1 && "bg-gray-100")} style={{cursor:"pointer"}}>
             <div className={"flex justify-center items-center arrival-time-estimated-time " + (coming_status === 1 ? "comming" : coming_status === 2 ? "gray" : "")}>
                 <div>{getEstimatedTimeStr(data)}</div>
             </div>
