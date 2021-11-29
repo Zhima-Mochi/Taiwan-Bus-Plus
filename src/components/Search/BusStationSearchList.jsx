@@ -25,7 +25,7 @@ export default function BusStationSearchList({ station_list, busStation, inputCo
     };
     return (
         <>
-            <div className="flex justify-between mx-4">
+            <div className="flex justify-between mx-4 my-1">
                 <span></span>
                 <select className="bg-white" onChange={(e) => setCity(e.target.value)}>
                     <option value="">全縣市</option>

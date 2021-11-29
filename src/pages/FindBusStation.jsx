@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { getBusStationTrie, getNearByBusStation } from "../api/TDX/Bus/BusStation";
 import { BusStationContext, UserLocationContext } from "../App";
 import BusStationSearchList from "../components/Search/BusStationSearchList";
 import { Trie } from "../constants/Trie";
-import west_24dp from '../assets/icons/west_24dp.svg';
 import search_black_24dp from '../assets/icons/search_black_24dp.svg';
 import { DEBUG } from "../constants/debug";
+import BackPage from "../components/Utils/BackPage";
 
 
 function FindBusStationInput({ inputHandle }) {
@@ -23,7 +22,6 @@ function FindBusStationInput({ inputHandle }) {
 
 export default function FindBusStation() {
     const busStation = useContext(BusStationContext);
-    const history = useHistory();
     const [inputContent, setInputContent] = useState("");
     const [stationList, setStationList] = useState([]);
     const [busStationTrie, setBusStationTrie] = useState(new Trie());
@@ -69,11 +67,8 @@ export default function FindBusStation() {
 
     return (
         <section className="bg-white  pt-4 lg:pb-10 h-full">
+            <BackPage />
             <div className="view-border h-full flex flex-col">
-                <div className="bg-white flex pl-1" onClick={() => history.goBack()} style={{ cursor: "pointer" }}>
-                    <img src={west_24dp} alt='回上一頁 back to previous page' />
-                    <span className="ml-2">返回首頁</span>
-                </div>
                 <FindBusStationInput inputHandle={getInputContent} />
                 <BusStationSearchList station_list={stationList} busStation={busStation} inputContent={inputContent} />
             </div>
