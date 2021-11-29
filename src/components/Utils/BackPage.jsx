@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import west_24dp from '../../assets/icons/west_24dp.svg';
 
-export default function BackPage({ content = "返回上一頁" }) {
+export default function BackPage({ content = "返回上頁" }) {
     let history = useHistory();
     return (
         <div className="bg-white view-border pt-4 flex pl-1" >

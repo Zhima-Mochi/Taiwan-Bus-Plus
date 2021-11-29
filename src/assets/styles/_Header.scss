@@ -1,4 +1,3 @@
-
 .header {
     height: 67px;
     background: #FFFFFF;
@@ -8,27 +7,12 @@
 
 }
 
-// .header {
-//     position: -webkit-sticky;
-//     position: sticky;
-//     top: 0px;
-//     height: 55px;
-//     width: 100%;
-//     background-color: $main_head;
-//     border-bottom: 3px solid $hover_head;
-//     padding: 17px 19px;
-//     color: white;
-//     font-family: $font-style;
-//     font-style: normal;
-//     font-weight: normal;
-//     font-size: 20px;
-//     line-height: 23px;
+.header-nav-btn {
+    padding: 0.25rem 0.5rem;
+    letter-spacing: 0.1em;
 
-//     @apply flex items-center justify-between;
-
-//     @include lg-width {
-//         height: 57px;
-//     }
-
-// }
-
+    &:hover {
+        border-bottom: 1px solid #F6A21A;
+        transition: 0.2s;
+    }
+}
