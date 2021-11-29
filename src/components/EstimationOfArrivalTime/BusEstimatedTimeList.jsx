@@ -51,7 +51,7 @@ function getComingStatus(data) {
     }
 }
 
-function EstimatedTimeItem({ data, pinStop, direction }) {
+function EstimatedTimeItem({ data, pinStop, direction, setMapStop }) {
     const coming_status = getComingStatus(data);
     useEffect(() => {
         if (pinStop[direction] === data.StopUID) {
@@ -64,7 +64,7 @@ function EstimatedTimeItem({ data, pinStop, direction }) {
         }
     }, [pinStop, direction]);
     return (
-        <div id={data.StopUID} className={"flex items-center arrival-time-item " + (coming_status === 1 && "bg-gray-100")}>
+        <div id={data.StopUID} onClick={() => { setMapStop(data.StopUID) }} className={"flex items-center arrival-time-item " + (coming_status === 1 && "bg-gray-100")}>
             <div className={"flex justify-center items-center arrival-time-estimated-time " + (coming_status === 1 ? "comming" : coming_status === 2 ? "gray" : "")}>
                 <div>{getEstimatedTimeStr(data)}</div>
             </div>
@@ -86,6 +86,7 @@ function getDistance(stop, center) {
 export default function BusEstimatedTimeList({ estimateData, RouteData }) {
     const [direction, setDirection] = useState(0);
     const [pinStop, setPinStop] = useState({});
+    const [mapStop, setMapStop] = useState("");
     const userLocation = useContext(UserLocationContext);
     const [stopsOfRoute, setStopsOfRoute] = useState([]);
     const [hideMap, setHideMap] = useState(true);
@@ -140,40 +141,44 @@ export default function BusEstimatedTimeList({ estimateData, RouteData }) {
 
     return (
         <div className="arrival-time-block h-full flex flex-col">
-            {/* <div className="flex justify-between">
+            <div className="flex justify-between">
                 <span></span>
                 <div className="flex justify-center items-center tracking-widest mr-1 cursor-pointer py-1" onClick={() => setHideMap(!hideMap)}>
-                    <img src={map} className="h-4 mr-2"></img>
+                    <img src={map} className="h-4 mr-2" alt="地圖圖案"></img>
                     {hideMap ? "打開地圖" : "收起地圖"}
                 </div>
             </div>
-            <div className={`w-full transition-all ` + (hideMap ? 'h-0' : 'h-60 lg:h-96')}>
-                {pinStop && stopsOfRoute && <BusRouteMap stopsOfRoute={stopsOfRoute} direction={direction} data={estimateData} />}
-            </div> */}
-            <div className="flex items-center">
-                {0 in estimateData && estimateData[0].length > 0 &&
-                    <div className={`flex-1 flex items-center justify-center arrival-time-direction-toggle ` + (direction === 0 ? 'on' : null)} onClick={() => setDirection(0)}>
-                        往&nbsp;<span className="font-bold">{RouteData.DestinationStopNameZh}</span>
-                    </div>
-                }
-                {1 in estimateData && estimateData[1].length > 0 &&
-                    <div className={`flex-1 flex items-center justify-center arrival-time-direction-toggle ` + (direction === 1 ? 'on' : null)} onClick={() => setDirection(1)}>
-                        往&nbsp;<span className="font-bold">{RouteData.DepartureStopNameZh}</span>
-                    </div>
-                }
-                {2 in estimateData && estimateData[2].length > 0 &&
-                    <div className={`flex-1 flex items-center justify-center arrival-time-direction-toggle ` + (direction === 2 ? 'on' : null)} onClick={() => setDirection(2)}>
-                        <span className="font-bold">迴圈</span>
-                    </div>
-                }
+            <div className={"grow-0 transition-all " + (hideMap ? 'h-0' : 'h-60 lg:h-80')}>
+                <div className={`w-full  h-60 lg:h-80`}>
+                    {pinStop && stopsOfRoute && <BusRouteMap stopsOfRoute={stopsOfRoute} mapStop={mapStop} direction={direction} data={estimateData} />}
+                </div>
             </div>
-            <div id="timeList" className="max-h-screen bg-white shadow-lg   px-4  overflow-auto relative" style={{ height: "75vh" }}>
-                {
-                    direction in estimateData &&
-                    estimateData[direction].map(item => {
-                        return <EstimatedTimeItem key={item.StopSequence} data={item} pinStop={pinStop} direction={direction} />
-                    })
-                }
+            <div className="z-10 bg-white">
+                <div className="flex items-center ">
+                    {0 in estimateData && estimateData[0].length > 0 &&
+                        <div className={`flex-1 flex items-center justify-center arrival-time-direction-toggle ` + (direction === 0 ? 'on' : null)} onClick={() => setDirection(0)}>
+                            往&nbsp;<span className="font-bold">{RouteData.DestinationStopNameZh}</span>
+                        </div>
+                    }
+                    {1 in estimateData && estimateData[1].length > 0 &&
+                        <div className={`flex-1 flex items-center justify-center arrival-time-direction-toggle ` + (direction === 1 ? 'on' : null)} onClick={() => setDirection(1)}>
+                            往&nbsp;<span className="font-bold">{RouteData.DepartureStopNameZh}</span>
+                        </div>
+                    }
+                    {2 in estimateData && estimateData[2].length > 0 &&
+                        <div className={`flex-1 flex items-center justify-center arrival-time-direction-toggle ` + (direction === 2 ? 'on' : null)} onClick={() => setDirection(2)}>
+                            <span className="font-bold">迴圈</span>
+                        </div>
+                    }
+                </div>
+                <div id="timeList" className="max-h-screen bg-white shadow-lg   px-4  overflow-auto relative" style={{ height: (hideMap ? "75vh" : "30vh") }}>
+                    {
+                        direction in estimateData &&
+                        estimateData[direction].map(item => {
+                            return <EstimatedTimeItem key={item.StopSequence} setMapStop={setMapStop} data={item} pinStop={pinStop} direction={direction} />
+                        })
+                    }
+                </div>
             </div>
         </div>
     )

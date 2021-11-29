@@ -19,13 +19,13 @@ const point_icon = new Icon({
 })
 
 
-function PinStop({ stopsOfRoute, direction }) {
+function PinStop({ stopsOfRoute, direction, mapStop = "" }) {
     if (stopsOfRoute[direction] && stopsOfRoute[direction][0]) {
         return (
             stopsOfRoute[direction][0].Stops.map((data, ind, arr) =>
-                <div>
-                    <Marker key={data.StopUID} position={[data.StopPosition.PositionLat, data.StopPosition.PositionLon]} icon={point_icon}>
-                        <Popup>
+                <div key={data.StopUID}>
+                    <Marker position={[data.StopPosition.PositionLat, data.StopPosition.PositionLon]} icon={point_icon}>
+                        <Popup >
                             <span>{data.StopName.Zh_tw}</span>
                         </Popup>
                     </Marker>
@@ -37,7 +37,7 @@ function PinStop({ stopsOfRoute, direction }) {
     }
 }
 
-export default function BusRouteMap({ pinStop, stopsOfRoute, direction }) {
+export default function BusRouteMap({ stopsOfRoute, direction, mapStop }) {
     const userLocation = useContext(UserLocationContext);
     const busStation = useContext(BusStationContext);
     const [map, setMap] = useState(null);
@@ -45,15 +45,22 @@ export default function BusRouteMap({ pinStop, stopsOfRoute, direction }) {
     useEffect(() => {
         if (map) {
             if (stopsOfRoute[direction] && stopsOfRoute[direction][0] && stopsOfRoute[direction][0].Stops.length) {
-                const pos = stopsOfRoute[direction][0].Stops[Math.floor(stopsOfRoute[direction][0].Stops.length / 2)].StopPosition;
+                // const pos = stopsOfRoute[direction][0].Stops[Math.floor(stopsOfRoute[direction][0].Stops.length / 2)].StopPosition;
+                let pos = stopsOfRoute[direction][0].Stops[0].StopPosition;
+                if (mapStop && mapStop[direction]) {
+                    const target_stop = stopsOfRoute[direction][0].Stops.find(stop => stop.StopUID === mapStop);
+                    if (target_stop) {
+                        pos = target_stop.StopPosition;
+                    }
+                }
                 map.setView([pos.PositionLat, pos.PositionLon]);
             }
         }
-    }, [map, stopsOfRoute, direction]);
+    }, [map, stopsOfRoute, direction, mapStop]);
 
 
     return (
-        <MapContainer center={[22.9977325, 120.2141299]} zoom={15} scrollWheelZoom={false} whenCreated={setMap}>
+        <MapContainer center={[22.9977325, 120.2141299]} zoom={16} scrollWheelZoom={false} whenCreated={setMap}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -63,7 +70,7 @@ export default function BusRouteMap({ pinStop, stopsOfRoute, direction }) {
                     <div className="pin-here">你在這裡</div>
                 </Popup>
             </Marker>
-            <PinStop stopsOfRoute={stopsOfRoute} direction={direction} />
+            <PinStop mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} />
         </MapContainer>
     )
 }
