@@ -53,18 +53,21 @@ function getComingStatus(data) {
 
 function EstimatedTimeItem({ data, pinStop, direction, setMapStop }) {
     const coming_status = getComingStatus(data);
+    const [isNear, setIsNear] = useState(false);
     useEffect(() => {
+        let child = document.getElementById(data.StopUID);
+        let parent = document.getElementById('timeList');
         if (pinStop[direction] === data.StopUID) {
-            let child = document.getElementById(pinStop[direction]);
-            let parent = document.getElementById('timeList');
             if (child) {
                 parent.scrollTop = child.offsetTop - child.clientHeight * 2;
-                child.style.backgroundColor = "lightblue";
+                setIsNear(true);
             }
+        } else {
+            setIsNear(false);
         }
     }, [pinStop, direction]);
     return (
-        <div id={data.StopUID} onClick={() => { setMapStop(data.StopUID) }} className={"flex items-center arrival-time-item " + (coming_status === 1 && "bg-gray-100")} style={{cursor:"pointer"}}>
+        <div id={data.StopUID} onClick={() => { setMapStop(data.StopUID) }} className={"flex items-center arrival-time-item " + (isNear ? "bg-blue-300 " : "") + (coming_status === 1 && "bg-gray-100")} style={{ cursor: "pointer" }}>
             <div className={"flex justify-center items-center arrival-time-estimated-time " + (coming_status === 1 ? "comming" : coming_status === 2 ? "gray" : "")}>
                 <div>{getEstimatedTimeStr(data)}</div>
             </div>
