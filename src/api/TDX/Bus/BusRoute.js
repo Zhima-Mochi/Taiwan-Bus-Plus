@@ -46,6 +46,14 @@ export async function getAllBusCityRoute() {
         });
 }
 
+function findFirstDigit(route_name) {
+    for (let i = 0; i < route_name.length; ++i) {
+        if (route_name[i] >= '0' && route_name[i] <= '9') {
+            return i;
+        }
+    }
+    return -1;
+}
 
 export function getBusRouteTrie(bus_route) {
     let t = new Trie();
@@ -53,6 +61,10 @@ export function getBusRouteTrie(bus_route) {
         route.RouteName.Zh_tw && t.insert(route.RouteName.Zh_tw, ind);
         if (route.RouteName.En && route.RouteName.En !== route.RouteName.Zh_tw) {
             t.insert(route.RouteName.En, ind)
+        }
+        const first_digit_ind = findFirstDigit(route.RouteName.Zh_tw);
+        if (first_digit_ind > 0) {
+            t.insert(route.RouteName.Zh_tw.slice(first_digit_ind), ind);
         }
     });
     return t;
