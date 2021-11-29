@@ -61,7 +61,7 @@ export default function FindBusStation() {
             setStationList(busStation.slice(pick, pick + 10));
         }
         DEBUG && console.log(stationList)
-    }, [inputContent, busStationTrie, busStation]);
+    }, [inputContent, busStationTrie, busStation, nearByBusStation, stationList]);
 
     // test busStationTrie.findAllIndices('307').forEach(item => console.log(busStation[item]));
 

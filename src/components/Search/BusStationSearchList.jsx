@@ -39,6 +39,8 @@ export default function BusStationSearchList({ station_list, busStation, inputCo
                     station_list.filter(data => {
                         if (city === "" || data.City === city) {
                             return data;
+                        } else {
+                            return false;
                         }
                     }).map(data => {
                         return (

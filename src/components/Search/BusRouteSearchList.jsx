@@ -23,6 +23,8 @@ export default function BusRouteSearchList({ route_list, busRoute, inputContent 
                     route_list.filter(data => {
                         if (city === "" || data.City === city) {
                             return data;
+                        } else {
+                            return false;
                         }
                     }).map((data, ind) => {
                         return (
