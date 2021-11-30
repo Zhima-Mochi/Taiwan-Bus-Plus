@@ -3,7 +3,7 @@
 **UI Designer : 鹽酥G**  
 [UI source](https://www.figma.com/file/JTb1ArUXnSceYEt6DmCGib/Week3---%E5%85%A8%E5%8F%B0%E5%85%AC%E8%BB%8A%E5%8B%95%E6%85%8B%E6%99%82%E5%88%BB%E6%9F%A5%E8%A9%A2%E6%87%89%E7%94%A8%E6%9C%8D%E5%8B%99?node-id=25%3A3)
 
-> Tool keywords: react, leaflet, tailwind, scss, docker, openstreetmap-api
+> Tool keywords: [TDX api](https://tdx.transportdata.tw/api-service/swagger), react, leaflet, tailwind, scss, docker, openstreetmap-api
 
 
 ## Overview
@@ -45,7 +45,8 @@ Now, have fun with http://localhost:3000/.
 
 <img src="./demo/demo1.png" alt="img" width="390"/>
 
-### 尋找路線與站點查詢使用Trie（字典樹）提供前綴字搜索  
+### 尋找路線與站點查詢使用Trie（字典樹）提供前綴字搜索
+> 尋找路線可省略路線數字前的中文字去搜尋，例如新北市的**藍32**，可直接以**32**來搜尋  
 
 <img src="./demo/demo2.png" alt="img" width="390"/>
 
@@ -58,5 +59,5 @@ Now, have fun with http://localhost:3000/.
 <img src="./demo/demo5.png" alt="img" width="390"/>
 
 ### 站點查詢當無任何輸入及縣市選擇時，預設是自己附近的站點
-
+> 若附近沒有任何站點時，則顯示非附近站點
 <img src="./demo/demo4.png" alt="img" width="390"/>
