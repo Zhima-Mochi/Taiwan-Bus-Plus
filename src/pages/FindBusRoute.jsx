@@ -13,7 +13,7 @@ function FindBusRouteInput({ inputHandle }) {
         <div className="flex justify-center items-center">
             <div className="input-window flex justify-center items-center ">
                 <img src={search_black_24dp} className="lookup" alt="尋找路線 serach icon" />
-                <input className="input" inputMode="numeric" placeholder="請輸入公車路線或號碼" autoComplete="off" onChange={e => inputHandle(e.target.value)}></input>
+                <input className="input" placeholder="請輸入公車路線或號碼" autoComplete="off" onChange={e => inputHandle(e.target.value)}></input>
             </div>
         </div>
     );
