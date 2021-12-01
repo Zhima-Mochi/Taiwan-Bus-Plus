@@ -20,7 +20,7 @@ export default function StoreBusStation({ setBusStation }) {
                     setBusStation && setBusStation(res);
                     localStorage.setItem("bus_station", LZString.compressToBase64(JSON.stringify({
                         data: res,
-                        expire_time: getExpireTime(24 * 3600 * 1000)
+                        expire_time: getExpireTime(3 * 24 * 3600 * 1000)
                     })));
                 })
                 .then(() => {
@@ -38,8 +38,8 @@ export default function StoreBusStation({ setBusStation }) {
         <div className="bg-white font-bold opacity-90 z-50 w-full h-full fixed flex flex-col items-center justify-center">
             <p className="text-center mb-2 tracking-widest ">資料更新中…</p>
             <p className="text-center mb-10 tracking-widest">第一次更新需約15秒的時間</p>
-            {messages.map((message,ind) => {
-                return <p key={ind} className="w-1/2 transition-all my-2 font-bold tracking-widest">{ind+1} {message}</p>
+            {messages.map((message, ind) => {
+                return <p key={ind} className="w-1/2 transition-all my-2 font-bold tracking-widest">{ind + 1} {message}</p>
             })}
         </div>
     );
