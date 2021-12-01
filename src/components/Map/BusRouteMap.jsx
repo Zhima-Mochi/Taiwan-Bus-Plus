@@ -60,13 +60,13 @@ export default function BusRouteMap({ stopsOfRoute, direction, mapStop }) {
 
 
     return (
-        <MapContainer center={[22.9977325, 120.2141299]} zoom={16} scrollWheelZoom={false} whenCreated={setMap}>
+        <MapContainer tap={false} center={[22.9977325, 120.2141299]} zoom={16} scrollWheelZoom={false} whenCreated={setMap}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[userLocation.latitude, userLocation.longitude]} icon={pin_icon}>
-                <Popup>
+            <Marker  position={[userLocation.latitude, userLocation.longitude]} icon={pin_icon}>
+                <Popup >
                     <div className="pin-here">你在這裡</div>
                 </Popup>
             </Marker>

@@ -85,7 +85,7 @@ export default function NearByBusStationMap() {
     DEBUG && console.log('near by bus station', getNearByBusStation(busStation, userLocation));
 
     return (
-        <MapContainer center={[22.9977325, 120.2141299]} zoom={16} scrollWheelZoom={false} whenCreated={setMap}>
+        <MapContainer tap={false} center={[22.9977325, 120.2141299]} zoom={16} scrollWheelZoom={false} whenCreated={setMap}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
