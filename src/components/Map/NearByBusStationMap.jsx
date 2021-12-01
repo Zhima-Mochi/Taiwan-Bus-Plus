@@ -55,11 +55,13 @@ function PinNearByBusStationPosition({ nearByBusStation }) {
                     <Popup>
                         <span className="pin-icon-station-name">{station.StationName}</span><br />
                         <span className="pin-icon-station-address">{station.StationAddress}</span><br />
-                        {station.Stops.map((stop, ind) => (
-                            <Link key={stop.RouteUID} to={`/bus_estimated_time/${stop.RouteUID}`}>
-                                <span className="pin-icon-route-name">{busRoute.find(route => route.RouteUID === stop.RouteUID).RouteName.Zh_tw}</span>
-                            </Link>
-                        ))}
+                        <div className="flex flex-wrap">
+                            {station.Stops.map((stop, ind) => (
+                                <Link key={stop.RouteUID} to={`/bus_estimated_time/${stop.RouteUID}`}>
+                                    <span className="pin-icon-route-name">{busRoute.find(route => route.RouteUID === stop.RouteUID).RouteName.Zh_tw}</span>
+                                </Link>
+                            ))}
+                        </div>
                     </Popup>
                 </Marker>
             )
