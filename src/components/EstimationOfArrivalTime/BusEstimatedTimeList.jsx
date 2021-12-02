@@ -93,7 +93,7 @@ export default function BusEstimatedTimeList({ estimateData, RouteData }) {
     const userLocation = useContext(UserLocationContext);
     const [stopsOfRoute, setStopsOfRoute] = useState([]);
     const [hideMap, setHideMap] = useState(true);
-
+    const [commingStop, setCommingStop] = useState([]);
     useEffect(() => {
         if (RouteData) {
             getStopsOfRoute(RouteData.City, RouteData.RouteUID).then(res => setStopsOfRoute(res));
@@ -141,6 +141,17 @@ export default function BusEstimatedTimeList({ estimateData, RouteData }) {
     }
         , [stopsOfRoute, userLocation]);
 
+    useEffect(() => {
+        let res = []
+        if (direction in estimateData) {
+            estimateData[direction].forEach(data => {
+                if (getComingStatus(data) === 1) {
+                    res.push(data.StopUID);
+                }
+            })
+        }
+        setCommingStop(res);
+    }, [stopsOfRoute, estimateData])
 
     return (
         <div className="arrival-time-block h-full flex flex-col">
@@ -153,7 +164,7 @@ export default function BusEstimatedTimeList({ estimateData, RouteData }) {
             </div>
             <div className={"grow-0 transition-all " + (hideMap ? 'h-0' : 'h-60 lg:h-80')}>
                 <div className={`w-full  h-60 lg:h-80`}>
-                    {pinStop && stopsOfRoute && <BusRouteMap stopsOfRoute={stopsOfRoute} mapStop={mapStop} direction={direction} data={estimateData} />}
+                    {pinStop && stopsOfRoute && <BusRouteMap stopsOfRoute={stopsOfRoute} mapStop={mapStop} direction={direction} commingStop={commingStop} />}
                 </div>
             </div>
             <div className="z-10 bg-white">

@@ -4,6 +4,7 @@ import { BusStationContext, UserLocationContext } from '../../App';
 import pin from '../../assets/icons/pin.svg';
 import bus from '../../assets/icons/directions_bus_filled_24dp.svg';
 import point from '../../assets/icons/radio_button_checked_black_24dp.svg';
+import red_point from '../../assets/icons/radio_button_checked_red_24dp.svg';
 import { Icon } from 'leaflet';
 
 const pin_icon = new Icon({
@@ -18,17 +19,49 @@ const point_icon = new Icon({
     className: 'leaflet-marker-icon'
 })
 
+const red_point_icon = new Icon({
+    iconUrl: red_point,
+    iconSize: [40, 40],
+    className: 'leaflet-marker-icon'
+})
 
-function PinStop({ stopsOfRoute, direction, mapStop = "" }) {
+function PinStop({ stopsOfRoute, direction, mapStop = "", commingStop }) {
+    if (stopsOfRoute[direction] && stopsOfRoute[direction][0]) {
+        return (
+            stopsOfRoute[direction][0].Stops.map((data, ind, arr) => {
+                if (commingStop && commingStop.indexOf(data.StopUID) !== -1) {
+                    return (<div key={data.StopUID}>
+                        <Marker position={[data.StopPosition.PositionLat, data.StopPosition.PositionLon]} icon={red_point_icon}>
+                            <Popup >
+                                <span>{data.StopName.Zh_tw}</span>
+                            </Popup>
+                        </Marker>
+                    </div>)
+                } else {
+
+                    return (
+                        <div key={data.StopUID}>
+                            <Marker position={[data.StopPosition.PositionLat, data.StopPosition.PositionLon]} icon={point_icon}>
+                                <Popup >
+                                    <span>{data.StopName.Zh_tw}</span>
+                                </Popup>
+                            </Marker>
+                        </div>
+                    )
+                }
+            })
+        );
+    } else {
+        return null;
+    }
+}
+
+function DrawBlueRoute({ stopsOfRoute, direction, mapStop = "", commingStop }) {
     if (stopsOfRoute[direction] && stopsOfRoute[direction][0]) {
         return (
             stopsOfRoute[direction][0].Stops.map((data, ind, arr) =>
                 <div key={data.StopUID}>
-                    <Marker position={[data.StopPosition.PositionLat, data.StopPosition.PositionLon]} icon={point_icon}>
-                        <Popup >
-                            <span>{data.StopName.Zh_tw}</span>
-                        </Popup>
-                    </Marker>
+                    {ind > 0 && commingStop.indexOf(data.StopUID) === -1 && <Polyline weight={10} color="#355F8B" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
                 </div>
             )
         );
@@ -37,12 +70,12 @@ function PinStop({ stopsOfRoute, direction, mapStop = "" }) {
     }
 }
 
-function DrawRoute({ stopsOfRoute, direction, mapStop = "", data }) {
+function DrawRedRoute({ stopsOfRoute, direction, mapStop = "", commingStop }) {
     if (stopsOfRoute[direction] && stopsOfRoute[direction][0]) {
         return (
             stopsOfRoute[direction][0].Stops.map((data, ind, arr) =>
                 <div key={data.StopUID}>
-                    {ind > 0 && <Polyline weight={10} color="#355F8B" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
+                    {ind > 0 && commingStop.indexOf(data.StopUID) !== -1 && <Polyline weight={10} color="#D08181" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
                 </div>
             )
         );
@@ -51,8 +84,7 @@ function DrawRoute({ stopsOfRoute, direction, mapStop = "", data }) {
     }
 }
 
-
-export default function BusRouteMap({ stopsOfRoute, direction, mapStop, data }) {
+export default function BusRouteMap({ stopsOfRoute, direction, mapStop, commingStop }) {
     const userLocation = useContext(UserLocationContext);
     const busStation = useContext(BusStationContext);
     const [map, setMap] = useState(null);
@@ -84,8 +116,9 @@ export default function BusRouteMap({ stopsOfRoute, direction, mapStop, data }) 
                     <div className="pin-here">你在這裡</div>
                 </Popup>
             </Marker>
-            <PinStop mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} />
-            <DrawRoute mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} />
+            <PinStop mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} commingStop={commingStop} />
+            <DrawBlueRoute mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} commingStop={commingStop} />
+            <DrawRedRoute mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} commingStop={commingStop} />
         </MapContainer>
     )
 }
