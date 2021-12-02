@@ -16,7 +16,7 @@ function getEstimatedTimeStr(data) {
     if (data.StopStatus > 1) {
         return StopStatus[data.StopStatus];
     } else if (data.StopStatus === 0 || data.EstimateTime) {
-        const minutes = Math.floor((data.EstimateTime - 10) / 60); // adjust 10 seconds
+        const minutes = Math.floor((data.EstimateTime) / 60); 
         if (minutes > 1) {
             return minutes + ' 分';
         } else if (minutes === 1) {
