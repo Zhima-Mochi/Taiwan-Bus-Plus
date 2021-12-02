@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, Polyline } from 'react-leaflet'
 import { BusStationContext, UserLocationContext } from '../../App';
 import pin from '../../assets/icons/pin.svg';
 import bus from '../../assets/icons/directions_bus_filled_24dp.svg';
 import point from '../../assets/icons/radio_button_checked_black_24dp.svg';
-import { Icon, Polyline } from 'leaflet';
+import { Icon } from 'leaflet';
 
 const pin_icon = new Icon({
     iconUrl: pin,
@@ -14,7 +14,7 @@ const pin_icon = new Icon({
 
 const point_icon = new Icon({
     iconUrl: point,
-    iconSize: [36, 36],
+    iconSize: [40, 40],
     className: 'leaflet-marker-icon'
 })
 
@@ -37,11 +37,25 @@ function PinStop({ stopsOfRoute, direction, mapStop = "" }) {
     }
 }
 
-export default function BusRouteMap({ stopsOfRoute, direction, mapStop }) {
+function DrawRoute({ stopsOfRoute, direction, mapStop = "", data }) {
+    if (stopsOfRoute[direction] && stopsOfRoute[direction][0]) {
+        return (
+            stopsOfRoute[direction][0].Stops.map((data, ind, arr) =>
+                <div key={data.StopUID}>
+                    {ind > 0 && <Polyline weight={10} color="#355F8B" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
+                </div>
+            )
+        );
+    } else {
+        return null;
+    }
+}
+
+
+export default function BusRouteMap({ stopsOfRoute, direction, mapStop, data }) {
     const userLocation = useContext(UserLocationContext);
     const busStation = useContext(BusStationContext);
     const [map, setMap] = useState(null);
-
     useEffect(() => {
         if (map) {
             if (stopsOfRoute[direction] && stopsOfRoute[direction][0] && stopsOfRoute[direction][0].Stops.length) {
@@ -65,12 +79,13 @@ export default function BusRouteMap({ stopsOfRoute, direction, mapStop }) {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker  position={[userLocation.latitude, userLocation.longitude]} icon={pin_icon}>
+            <Marker position={[userLocation.latitude, userLocation.longitude]} icon={pin_icon}>
                 <Popup >
                     <div className="pin-here">你在這裡</div>
                 </Popup>
             </Marker>
             <PinStop mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} />
+            <DrawRoute mapStop={mapStop} stopsOfRoute={stopsOfRoute} direction={direction} />
         </MapContainer>
     )
 }
