@@ -71,7 +71,7 @@ export default function BusEstimatedTime() {
         <div className="h-full flex flex-col">
             <BackPage />
             {RouteData && <BusEstimatedTimeRouteName RouteData={RouteData} />}
-            <div className="bg-white tracking-widest sticky top-0 z-10">
+            <div className="bg-white tracking-widest sticky top-0 z-20">
                 <div className=" text-right lg:text-center py-1">{updateTime}秒後更新</div>
             </div>
             <div className="view-border lg:pb-10 h-full flex flex-col">
