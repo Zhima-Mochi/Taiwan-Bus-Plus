@@ -40,8 +40,8 @@ function getComingStatus(data) {
     if (data.StopStatus > 1) {
         return 2;
     } else if (data.StopStatus === 0 || data.EstimateTime) {
-        const minutes = Math.ceil(data.EstimateTime / 60);
-        if (minutes <= 2) {
+        const minutes = Math.floor(data.EstimateTime / 60);
+        if (minutes <= 1) {
             return 1;
         } else {
             return 0;
