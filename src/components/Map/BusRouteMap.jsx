@@ -61,7 +61,7 @@ function DrawBlueRoute({ stopsOfRoute, direction, mapStop = "", commingStop }) {
         return (
             stopsOfRoute[direction][0].Stops.map((data, ind, arr) =>
                 <div key={data.StopUID}>
-                    {ind > 0 && commingStop.indexOf(data.StopUID) === -1 && <Polyline weight={10} color="#355F8B" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
+                    {ind > 0 && commingStop.indexOf(data.StopUID) === -1 && <Polyline weight={8} color="#355F8B" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
                 </div>
             )
         );
@@ -75,7 +75,7 @@ function DrawRedRoute({ stopsOfRoute, direction, mapStop = "", commingStop }) {
         return (
             stopsOfRoute[direction][0].Stops.map((data, ind, arr) =>
                 <div key={data.StopUID}>
-                    {ind > 0 && commingStop.indexOf(data.StopUID) !== -1 && <Polyline weight={10} color="#D08181" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
+                    {ind > 0 && commingStop.indexOf(data.StopUID) !== -1 && <Polyline weight={8} color="#D08181" key={ind} positions={[[arr[ind - 1].StopPosition.PositionLat, arr[ind - 1].StopPosition.PositionLon], [data.StopPosition.PositionLat, data.StopPosition.PositionLon]]} />}
                 </div>
             )
         );
