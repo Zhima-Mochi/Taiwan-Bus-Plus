@@ -37,7 +37,6 @@ Now, have fun with http://localhost:3000/.
 
 ## Demo
 + [github page](https://zhima-mochi.github.io/Taiwan-Bus-Plus/)
-+ [virtual machine](http://108.61.187.106:8089/#/)
 
 ## Feature & Introduction
 
